@@ -8,12 +8,12 @@ import { TeacherService } from '../../../../core/service/teacher.service';
 import { Session } from '../../../../core/models/session.interface';
 import { SessionApiService } from '../../../../core/service/session-api.service';
 import { MaterialModule } from "../../../../shared/material.module";
-import { CommonModule } from "@angular/common";
 import { SessionFormControls } from './form.interface';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-form',
-  imports: [CommonModule, MaterialModule],
+  imports: [AsyncPipe, MaterialModule],
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss']
 })

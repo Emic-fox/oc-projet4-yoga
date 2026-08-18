@@ -4,12 +4,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/service/auth.service';
 import { MaterialModule } from "../../shared/material.module";
-import { CommonModule } from "@angular/common";
 import { RegisterFormControls } from './register.interface';
 
 @Component({
   selector: 'app-register',
-  imports: [CommonModule, MaterialModule],
+  imports: [MaterialModule],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })

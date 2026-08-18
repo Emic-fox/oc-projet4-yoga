@@ -6,12 +6,11 @@ import { SessionInformation } from 'src/app/core/models/sessionInformation.inter
 import { SessionService } from 'src/app/core/service/session.service';
 import { AuthService } from '../../core/service/auth.service';
 import {MaterialModule} from "../../shared/material.module";
-import { CommonModule } from '@angular/common';
 import { LoginFormControls } from './login.interface';
 
 @Component({
   selector: 'app-login',
-  imports: [CommonModule, MaterialModule],
+  imports: [MaterialModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })

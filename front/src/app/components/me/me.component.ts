@@ -6,12 +6,12 @@ import { User } from '../../core/models/user.interface';
 import { SessionService } from '../../core/service/session.service';
 import { UserService } from '../../core/service/user.service';
 import { MaterialModule } from "../../shared/material.module";
-import { CommonModule } from "@angular/common";
+import { AsyncPipe, DatePipe, UpperCasePipe } from "@angular/common";
 import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-me',
-  imports: [CommonModule, MaterialModule],
+  imports: [AsyncPipe, DatePipe, UpperCasePipe, MaterialModule],
   templateUrl: './me.component.html',
   styleUrls: ['./me.component.scss']
 })
