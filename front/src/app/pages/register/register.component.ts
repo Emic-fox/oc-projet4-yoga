@@ -2,7 +2,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Component, DestroyRef, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../../core/service/auth.service';
+import { AuthService } from '../../core/services/auth.service';
 import { MaterialModule } from "../../shared/material.module";
 import { RegisterFormControls } from './register.interface';
 

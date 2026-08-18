@@ -4,10 +4,10 @@ import { FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Teacher } from '../../../../core/models/teacher.interface';
-import { SessionService } from '../../../../core/service/session.service';
-import { TeacherService } from '../../../../core/service/teacher.service';
+import { SessionService } from '../../../../core/services/session.service';
+import { TeacherService } from '../../../../core/services/teacher.service';
 import { Session } from '../../../../core/models/session.interface';
-import { SessionApiService } from '../../../../core/service/session-api.service';
+import { SessionApiService } from '../../../../core/services/session-api.service';
 import { MaterialModule } from "../../../../shared/material.module";
 import { DatePipe, TitleCasePipe, UpperCasePipe } from "@angular/common";
 

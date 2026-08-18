@@ -4,7 +4,7 @@ import { provideRouter  } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { expect } from '@jest/globals';
-import { SessionService } from 'src/app/core/service/session.service';
+import { SessionService } from 'src/app/core/services/session.service';
 
 import { ListComponent } from './list.component';
 

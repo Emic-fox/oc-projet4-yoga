@@ -2,9 +2,9 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Component, DestroyRef, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { SessionInformation } from 'src/app/core/models/sessionInformation.interface';
-import { SessionService } from 'src/app/core/service/session.service';
-import { AuthService } from '../../core/service/auth.service';
+import { SessionInformation } from 'src/app/core/models/session-information.interface';
+import { SessionService } from 'src/app/core/services/session.service';
+import { AuthService } from '../../core/services/auth.service';
 import {MaterialModule} from "../../shared/material.module";
 import { LoginFormControls } from './login.interface';
 

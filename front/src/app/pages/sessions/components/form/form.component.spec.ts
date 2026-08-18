@@ -10,8 +10,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { expect } from '@jest/globals';
-import { SessionService } from 'src/app/core/service/session.service';
-import { SessionApiService } from '../../../../core/service/session-api.service';
+import { SessionService } from 'src/app/core/services/session.service';
+import { SessionApiService } from '../../../../core/services/session-api.service';
 
 import { FormComponent } from './form.component';
 
