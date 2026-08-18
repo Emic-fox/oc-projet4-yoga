@@ -5,6 +5,15 @@
         text-decoration: none;
     }
 
+    button.link {
+        background: none;
+        border: none;
+        color: inherit;
+        font-family: inherit;
+        font-weight: inherit;
+        padding: 0;
+    }
+
     .link + .link {
         margin-left: 10px;
     }
