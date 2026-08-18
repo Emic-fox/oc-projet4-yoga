@@ -9,6 +9,7 @@ import { Session } from '../../../../core/models/session.interface';
 import { SessionApiService } from '../../../../core/service/session-api.service';
 import { MaterialModule } from "../../../../shared/material.module";
 import { CommonModule } from "@angular/common";
+import { SessionFormControls } from './form.interface';
 
 @Component({
   selector: 'app-form',
@@ -27,7 +28,8 @@ export class FormComponent implements OnInit {
   private destroyRef = inject(DestroyRef);
 
   public onUpdate: boolean = false;
-  public sessionForm: FormGroup | undefined;
+  private currentSession: Session | undefined;
+  public sessionForm: FormGroup<SessionFormControls> | undefined;
   public teachers$ = this.teacherService.all();
   private id: string | undefined;
 
@@ -42,30 +44,38 @@ export class FormComponent implements OnInit {
       this.sessionApiService
         .detail(this.id)
         .pipe(takeUntilDestroyed(this.destroyRef))
-        .subscribe((session: Session) => this.initForm(session));
+        .subscribe((session: Session) => {
+          this.currentSession = session;
+          this.initForm(session);
+        });
     } else {
       this.initForm();
     }
   }
 
   public submit(): void {
-    const session = this.sessionForm?.value as Session;
+    const formValue = this.sessionForm!.getRawValue();
+    const session: Session = {
+      ...formValue,
+      date: new Date(formValue.date),
+      users: this.currentSession?.users ?? [],
+    };
 
     if (!this.onUpdate) {
       this.sessionApiService
         .create(session)
         .pipe(takeUntilDestroyed(this.destroyRef))
-        .subscribe((_: Session) => this.exitPage('Session created !'));
+        .subscribe(() => this.exitPage('Session created !'));
     } else {
       this.sessionApiService
         .update(this.id!, session)
         .pipe(takeUntilDestroyed(this.destroyRef))
-        .subscribe((_: Session) => this.exitPage('Session updated !'));
+        .subscribe(() => this.exitPage('Session updated !'));
     }
   }
 
   private initForm(session?: Session): void {
-    this.sessionForm = this.fb.group({
+    this.sessionForm = this.fb.nonNullable.group({
       name: [
         session ? session.name : '',
         [Validators.required]
@@ -75,7 +85,7 @@ export class FormComponent implements OnInit {
         [Validators.required]
       ],
       teacher_id: [
-        session ? session.teacher_id : '',
+        session ? session.teacher_id : 0,
         [Validators.required]
       ],
       description: [

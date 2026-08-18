@@ -1,11 +1,12 @@
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Component, DestroyRef, inject } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/service/auth.service';
-import { RegisterRequest } from '../../core/models/registerRequest.interface';
 import { MaterialModule } from "../../shared/material.module";
 import { CommonModule } from "@angular/common";
+import { RegisterFormControls } from './register.interface';
+
 @Component({
   selector: 'app-register',
   imports: [CommonModule, MaterialModule],
@@ -20,7 +21,7 @@ export class RegisterComponent {
 
   public onError = false;
 
-  public form = this.fb.group({
+  public form: FormGroup<RegisterFormControls> = this.fb.nonNullable.group({
     email: [
       '',
       [
@@ -56,13 +57,13 @@ export class RegisterComponent {
 
 
   public submit(): void {
-    const registerRequest = this.form.value as RegisterRequest;
+    const registerRequest = this.form.getRawValue();
     this.authService
       .register(registerRequest)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
-        next: (_: void) => this.router.navigate(['/login']),
-        error: _ => this.onError = true,
+        next: () => this.router.navigate(['/login']),
+        error: () => this.onError = true,
       }
     );
   }

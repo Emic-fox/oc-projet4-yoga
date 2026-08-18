@@ -1,13 +1,13 @@
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Component, DestroyRef, inject } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SessionInformation } from 'src/app/core/models/sessionInformation.interface';
 import { SessionService } from 'src/app/core/service/session.service';
-import { LoginRequest } from '../../core/models/loginRequest.interface';
 import { AuthService } from '../../core/service/auth.service';
 import {MaterialModule} from "../../shared/material.module";
 import { CommonModule } from '@angular/common';
+import { LoginFormControls } from './login.interface';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +25,7 @@ export class LoginComponent {
   public hide = true;
   public onError = false;
 
-  public form = this.fb.group({
+  public form: FormGroup<LoginFormControls> = this.fb.nonNullable.group({
     email: [
       '',
       [
@@ -43,7 +43,7 @@ export class LoginComponent {
   });
 
   public submit(): void {
-    const loginRequest = this.form.value as LoginRequest;
+    const loginRequest = this.form.getRawValue();
     this.authService
       .login(loginRequest)
       .pipe(takeUntilDestroyed(this.destroyRef))
@@ -52,7 +52,7 @@ export class LoginComponent {
         this.sessionService.logIn(response);
         this.router.navigate(['/sessions']);
       },
-      error: error => this.onError = true,
+      error: () => this.onError = true,
     });
   }
 }
