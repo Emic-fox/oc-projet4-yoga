@@ -6,12 +6,15 @@ import { User } from '../../core/models/user.interface';
 import { SessionService } from '../../core/services/session.service';
 import { UserService } from '../../core/services/user.service';
 import { MaterialModule } from "../../shared/material.module";
-import { AsyncPipe, DatePipe, UpperCasePipe } from "@angular/common";
+import { AsyncPipe, UpperCasePipe } from "@angular/common";
 import { Observable } from 'rxjs';
+import { IconButtonComponent } from "../../shared/components/icon-button/icon-button.component";
+import { PageTitleComponent } from "../../shared/components/page-title/page-title.component";
+import { RecordDatesComponent } from "../../shared/components/record-dates/record-dates.component";
 
 @Component({
   selector: 'app-me',
-  imports: [AsyncPipe, DatePipe, UpperCasePipe, MaterialModule],
+  imports: [AsyncPipe, UpperCasePipe, MaterialModule, IconButtonComponent, PageTitleComponent, RecordDatesComponent],
   templateUrl: './me.component.html',
   styleUrls: ['./me.component.scss']
 })
@@ -24,10 +27,6 @@ export class MeComponent {
 
   public user$: Observable<User> = this.userService.getById(this.sessionService.sessionInformation!.id.toString())
   
-  public back(): void {
-    window.history.back();
-  }
-
   public delete(): void {
     this.userService
       .delete(this.sessionService.sessionInformation!.id.toString())

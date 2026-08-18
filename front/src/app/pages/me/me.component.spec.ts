@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SessionService } from 'src/app/core/services/session.service';
+import { provideRouter } from '@angular/router';
 
 import { MeComponent } from './me.component';
 
@@ -30,7 +31,7 @@ describe('MeComponent', () => {
         MatIconModule,
         MatInputModule
       ],
-      providers: [{ provide: SessionService, useValue: mockSessionService }],
+      providers: [{ provide: SessionService, useValue: mockSessionService }, provideRouter([])],
     })
       .compileComponents();
 

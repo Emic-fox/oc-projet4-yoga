@@ -1,12 +1,7 @@
 <div class="m3">
   <mat-card>
     <mat-card-title>
-      <div fxLayout="row" fxLayoutAlign="start center">
-        <button mat-icon-button (click)="back()">
-          <mat-icon>arrow_back</mat-icon>
-        </button>
-        <h1>User information</h1>
-      </div>
+      <app-page-title title="User information" />
     </mat-card-title>
     <mat-card-content>
       @if (user$ | async; as user) {
@@ -18,16 +13,10 @@
           } @else {
             <div fxLayout="column" class="my2" fxLayoutAlign="center center">
               <p>Delete my account:</p>
-              <button mat-raised-button color="warn" (click)="delete()">
-                <mat-icon>delete</mat-icon>
-                <span class="ml1">Detail</span>
-              </button>
+              <app-icon-button icon="delete" label="Delete" color="warn" (buttonClick)="delete()" />
             </div>
           }
-          <div fxLayoutAlign="space-between center" class="p2 w100">
-            <p><i>Create at: </i> {{ user.createdAt | date: 'longDate'}}</p>
-            <p><i>Last update: </i> {{ user.updatedAt| date: 'longDate'}}</p>
-          </div>
+          <app-record-dates [createdAt]="user.createdAt" [updatedAt]="user.updatedAt" />
         </div>
       }
     </mat-card-content>

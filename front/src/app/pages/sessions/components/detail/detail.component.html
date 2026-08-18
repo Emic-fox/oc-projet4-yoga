@@ -3,30 +3,16 @@
     <mat-card>
       <mat-card-title>
         <div fxLayout="row" fxLayoutAlign="space-between center">
-          <div fxLayout="row" fxLayoutAlign="start center">
-            <button mat-icon-button (click)="back()">
-              <mat-icon>arrow_back</mat-icon>
-            </button>
-            <h1>{{session.name | titlecase}}</h1>
-          </div>
+          <app-page-title [title]="session.name | titlecase" />
           <div>
             @if (isAdmin) {
-              <button mat-raised-button color="warn" (click)="delete()">
-                <mat-icon>delete</mat-icon>
-                <span class="ml1">Delete</span>
-              </button>
+              <app-icon-button icon="delete" label="Delete" color="warn" (buttonClick)="delete()" />
             } @else {
               <div>
                 @if (isParticipate) {
-                  <button mat-raised-button color="warn" (click)="unParticipate()">
-                    <mat-icon>person_remove</mat-icon>
-                    <span class="ml1">Do not participate</span>
-                  </button>
+                  <app-icon-button icon="person_remove" label="Do not participate" color="warn" (buttonClick)="unParticipate()" />
                 } @else {
-                  <button mat-raised-button color="primary" (click)="participate()">
-                    <mat-icon>person_add</mat-icon>
-                    <span class="ml1">Participate</span>
-                  </button>
+                  <app-icon-button icon="person_add" label="Participate" (buttonClick)="participate()" />
                 }
               </div>
             }
@@ -46,7 +32,7 @@
       }
 
       <div mat-card-image fxLayoutAlign="center center">
-        <img class="picture" src="../../../../../assets/sessions.png" alt="Yoga session">
+        <app-session-image />
       </div>
 
       <mat-card-content>
@@ -69,10 +55,7 @@
           {{ session.description }}
           <br>
         </div>
-        <div class="date" class="my2" fxLayout="row" fxLayoutAlign="space-between center">
-          <div class="created"><i>Create at: </i> {{ session.createdAt| date: 'longDate'}}</div>
-          <div class="updated"><i>Last update: </i> {{ session.updatedAt| date: 'longDate'}}</div>
-        </div>
+        <app-record-dates [createdAt]="session.createdAt" [updatedAt]="session.updatedAt" />
       </mat-card-content>
     </mat-card>
   }

@@ -9,12 +9,15 @@ import { Session } from '../../../../core/models/session.interface';
 import { SessionApiService } from '../../../../core/services/session-api.service';
 import { MaterialModule } from "../../../../shared/material.module";
 import { DatePipe, TitleCasePipe, UpperCasePipe } from "@angular/common";
+import { SessionImageComponent } from "../../../../shared/components/session-image/session-image.component";
+import { IconButtonComponent } from "../../../../shared/components/icon-button/icon-button.component";
+import { PageTitleComponent } from "../../../../shared/components/page-title/page-title.component";
+import { RecordDatesComponent } from "../../../../shared/components/record-dates/record-dates.component";
 
 @Component({
   selector: 'app-detail',
-  imports: [DatePipe, TitleCasePipe, UpperCasePipe, MaterialModule],
-  templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.scss']
+  imports: [DatePipe, TitleCasePipe, UpperCasePipe, MaterialModule, SessionImageComponent, IconButtonComponent, PageTitleComponent, RecordDatesComponent],
+  templateUrl: './detail.component.html'
 })
 export class DetailComponent implements OnInit {
   public session: Session | undefined;
@@ -40,10 +43,6 @@ export class DetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchSession();
-  }
-
-  public back(): void {
-    window.history.back();
   }
 
   public delete(): void {

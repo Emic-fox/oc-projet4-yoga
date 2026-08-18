@@ -10,12 +10,13 @@ import { SessionApiService } from '../../../../core/services/session-api.service
 import { MaterialModule } from "../../../../shared/material.module";
 import { SessionFormControls } from './form.interface';
 import { AsyncPipe } from '@angular/common';
+import { PageTitleComponent } from "../../../../shared/components/page-title/page-title.component";
+import { FormLayoutComponent } from "../../../../shared/components/form-layout/form-layout.component";
 
 @Component({
   selector: 'app-form',
-  imports: [AsyncPipe, MaterialModule],
-  templateUrl: './form.component.html',
-  styleUrls: ['./form.component.scss']
+  imports: [AsyncPipe, MaterialModule, PageTitleComponent, FormLayoutComponent],
+  templateUrl: './form.component.html'
 })
 export class FormComponent implements OnInit {
   private route = inject(ActivatedRoute);

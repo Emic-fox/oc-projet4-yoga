@@ -3,10 +3,7 @@
     <mat-card-header fxLayout="row" fxLayoutAlign="space-between center">
       <mat-card-title class="m0">Rentals available</mat-card-title>
       @if (user!.admin) {
-        <button mat-raised-button color="primary" routerLink="create">
-          <mat-icon>add</mat-icon>
-          <span class="ml1">Create</span>
-        </button>
+        <app-icon-button icon="add" label="Create" routerLink="create" />
       }
     </mat-card-header>
     <div class="items mt2" fxLayout="row wrap" fxLayout.lt-md="column">
@@ -19,7 +16,7 @@
             </mat-card-subtitle>
           </mat-card-header>
           <div mat-card-image fxLayoutAlign="center center">
-            <img class="picture" src="../../../../../assets/sessions.png" alt="Yoga session">
+            <app-session-image />
           </div>
           <mat-card-content>
             <p>
@@ -27,15 +24,9 @@
             </p>
           </mat-card-content>
           <mat-card-actions>
-            <button mat-raised-button color="primary" [routerLink]="['detail',session.id]">
-              <mat-icon>search</mat-icon>
-              <span class="ml1">Detail</span>
-            </button>
+            <app-icon-button icon="search" label="Detail" [routerLink]="['detail', session.id]" />
             @if (user!.admin) {
-              <button mat-raised-button color="primary" [routerLink]="['update',session.id]">
-                <mat-icon>edit</mat-icon>
-                <span class="ml1">Edit</span>
-              </button>
+              <app-icon-button icon="edit" label="Edit" [routerLink]="['update', session.id]" />
             }
           </mat-card-actions>
         </mat-card>

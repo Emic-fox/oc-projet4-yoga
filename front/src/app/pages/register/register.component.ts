@@ -5,12 +5,12 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { MaterialModule } from "../../shared/material.module";
 import { RegisterFormControls } from './register.interface';
+import { FormLayoutComponent } from "../../shared/components/form-layout/form-layout.component";
 
 @Component({
   selector: 'app-register',
-  imports: [MaterialModule],
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  imports: [MaterialModule, FormLayoutComponent],
+  templateUrl: './register.component.html'
 })
 export class RegisterComponent {
   private authService = inject(AuthService);

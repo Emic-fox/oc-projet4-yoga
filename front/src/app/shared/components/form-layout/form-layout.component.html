@@ -1,0 +1,15 @@
+<div class="form-layout" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card [style.max-width]="maxWidth">
+    <mat-card-header fxLayoutAlign="center center">
+      @if (title) {
+        <mat-card-title>{{ title }}</mat-card-title>
+      } @else {
+        <ng-content select="[layout-title]"></ng-content>
+      }
+    </mat-card-header>
+    
+    <mat-card-content>
+      <ng-content></ng-content>
+    </mat-card-content>
+  </mat-card>
+</div>

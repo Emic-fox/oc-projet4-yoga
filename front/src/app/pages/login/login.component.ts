@@ -7,12 +7,12 @@ import { SessionService } from 'src/app/core/services/session.service';
 import { AuthService } from '../../core/services/auth.service';
 import {MaterialModule} from "../../shared/material.module";
 import { LoginFormControls } from './login.interface';
+import { FormLayoutComponent } from "../../shared/components/form-layout/form-layout.component";
 
 @Component({
   selector: 'app-login',
-  imports: [MaterialModule],
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  imports: [MaterialModule, FormLayoutComponent],
+  templateUrl: './login.component.html'
 })
 export class LoginComponent {
   private authService = inject(AuthService);
