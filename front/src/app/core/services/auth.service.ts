@@ -4,12 +4,13 @@ import { Observable } from 'rxjs';
 import { LoginRequest } from '../models/login-request.interface';
 import { RegisterRequest } from '../models/register-request.interface';
 import { SessionInformation } from 'src/app/core/models/session-information.interface';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private pathService = '/api/auth';
+  private pathService = `${environment.baseUrl}/auth`;
   private httpClient = inject(HttpClient);
 
   public register(registerRequest: RegisterRequest): Observable<void> {

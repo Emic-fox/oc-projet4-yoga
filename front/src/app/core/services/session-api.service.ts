@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Session } from '../models/session.interface';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SessionApiService {
-  private pathService = 'api/session';
+  private pathService = `${environment.baseUrl}/session`;
   private httpClient = inject(HttpClient);
 
   public all(): Observable<Session[]> {
