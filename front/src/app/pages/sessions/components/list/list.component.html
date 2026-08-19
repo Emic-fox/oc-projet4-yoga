@@ -1,21 +1,21 @@
 <div class="m-5">
   <mat-card>
-    <mat-card-header fxLayout="row" fxLayoutAlign="space-between center">
+    <mat-card-header class="flex flex-row justify-between items-center">
       <mat-card-title class="m-0">Rentals available</mat-card-title>
       @if (user!.admin) {
         <app-icon-button icon="add" label="Create" routerLink="create" />
       }
     </mat-card-header>
-    <div class="mt-4 gap-8" fxLayout="row wrap" fxLayout.lt-md="column">
+    <div class="mt-4 gap-8 flex flex-col md:flex-row md:flex-wrap">
       @for (session of (sessions$ | async); track session.id) {
-        <mat-card class="min-w-[250px]" fxFlex>
+        <mat-card class="min-w-[250px] flex-1">
           <mat-card-header>
             <mat-card-title>{{ session.name }}</mat-card-title>
             <mat-card-subtitle>
               Session on {{ session.date | date: 'longDate'}}
             </mat-card-subtitle>
           </mat-card-header>
-          <div mat-card-image fxLayoutAlign="center center">
+          <div mat-card-image class="flex justify-center items-center">
             <app-session-image />
           </div>
           <mat-card-content>
@@ -23,7 +23,7 @@
               {{ session.description }}
             </p>
           </mat-card-content>
-          <mat-card-actions>
+          <mat-card-actions class="gap-1">
             <app-icon-button icon="search" label="Detail" [routerLink]="['detail', session.id]" />
             @if (user!.admin) {
               <app-icon-button icon="edit" label="Edit" [routerLink]="['update', session.id]" />

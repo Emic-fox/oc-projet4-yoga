@@ -1,15 +1,15 @@
 <app-form-layout maxWidth="600px" title="Register">
-    <form [formGroup]="form" (ngSubmit)="submit()" fxLayout="column">
-        <mat-form-field fxFlex>
+    <form [formGroup]="form" (ngSubmit)="submit()" class="flex flex-col">
+        <mat-form-field class="flex-1">
             <input matInput placeholder="First name" formControlName="firstName">
         </mat-form-field>
-        <mat-form-field fxFlex>
+        <mat-form-field class="flex-1">
             <input matInput placeholder="Last name" formControlName="lastName">
         </mat-form-field>
-        <mat-form-field fxFlex>
+        <mat-form-field class="flex-1">
             <input matInput placeholder="Email" formControlName="email">
         </mat-form-field>
-        <mat-form-field fxFlex>
+        <mat-form-field class="flex-1">
             <input matInput placeholder="Password" formControlName="password">
         </mat-form-field>
         <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Submit</button>

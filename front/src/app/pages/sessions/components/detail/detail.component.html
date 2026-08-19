@@ -2,7 +2,7 @@
   @if (session) {
     <mat-card>
       <mat-card-title>
-        <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div class="flex flex-row justify-between items-center">
           <app-page-title [title]="session.name | titlecase" />
           <div>
             @if (isAdmin) {
@@ -22,7 +22,7 @@
 
       @if (teacher) {
         <mat-card-subtitle>
-          <div fxLayoutAlign="start center" class="ml-8">
+          <div class="ml-8 flex justify-start items-center">
             <mat-icon>
               people
             </mat-icon>
@@ -31,19 +31,19 @@
         </mat-card-subtitle>
       }
 
-      <div mat-card-image fxLayoutAlign="center center">
+      <div mat-card-image class="flex justify-center items-center">
         <app-session-image />
       </div>
 
       <mat-card-content>
-        <div class="my-4" fxLayout="row" fxLayoutAlign="space-between center">
-          <div fxLayoutAlign="start center">
+        <div class="my-4 flex flex-row justify-between items-center">
+          <div class="flex justify-start items-center">
             <mat-icon>
               group
             </mat-icon>
             <span class="ml-2">{{ session.users.length }} attendees</span>
           </div>
-          <div fxLayoutAlign="start center">
+          <div class="flex justify-start items-center">
             <mat-icon>
               calendar_month
             </mat-icon>
