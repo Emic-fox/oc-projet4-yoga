@@ -15,8 +15,7 @@ import { RecordDatesComponent } from "../../shared/components/record-dates/recor
 @Component({
   selector: 'app-me',
   imports: [AsyncPipe, UpperCasePipe, MaterialModule, IconButtonComponent, PageTitleComponent, RecordDatesComponent],
-  templateUrl: './me.component.html',
-  styleUrls: ['./me.component.scss']
+  templateUrl: './me.component.html'
 })
 export class MeComponent {
   private router = inject(Router);

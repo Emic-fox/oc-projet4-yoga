@@ -2,7 +2,7 @@
   <app-page-title layout-title [title]="onUpdate ? 'Update session' : 'Create session'" backRouterLink="/sessions" />
   
   @if (sessionForm) {
-    <form class="mt2" fxLayout="column" [formGroup]="sessionForm" (ngSubmit)="submit()">
+    <form class="mt-4" fxLayout="column" [formGroup]="sessionForm" (ngSubmit)="submit()">
       <mat-form-field appearance="outline" fxFlex>
         <mat-label>Name</mat-label>
         <input matInput formControlName="name">

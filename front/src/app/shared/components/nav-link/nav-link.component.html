@@ -1,0 +1,13 @@
+<ng-template #content>
+  <ng-content />
+</ng-template>
+
+@if (link) {
+  <a [routerLink]="link" routerLinkActive="active" class="text-inherit text-base no-underline">
+    <ng-container *ngTemplateOutlet="content" />
+  </a>
+} @else {
+  <button type="button" (click)="onClick()" class="[font:inherit] text-inherit !text-base cursor-pointer bg-transparent border-none p-0">
+    <ng-container *ngTemplateOutlet="content" />
+  </button>
+}

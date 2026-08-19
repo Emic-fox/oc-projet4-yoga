@@ -1,4 +1,4 @@
-<div class="m3">
+<div class="m-8">
   @if (session) {
     <mat-card>
       <mat-card-title>
@@ -22,11 +22,11 @@
 
       @if (teacher) {
         <mat-card-subtitle>
-          <div fxLayoutAlign="start center" class="ml3">
+          <div fxLayoutAlign="start center" class="ml-8">
             <mat-icon>
               people
             </mat-icon>
-            <span class="ml1">{{ teacher.firstName }} {{ teacher.lastName | uppercase }}</span>
+            <span class="ml-2">{{ teacher.firstName }} {{ teacher.lastName | uppercase }}</span>
           </div>
         </mat-card-subtitle>
       }
@@ -36,18 +36,18 @@
       </div>
 
       <mat-card-content>
-        <div class="my2" fxLayout="row" fxLayoutAlign="space-between center">
+        <div class="my-4" fxLayout="row" fxLayoutAlign="space-between center">
           <div fxLayoutAlign="start center">
             <mat-icon>
               group
             </mat-icon>
-            <span class="ml1">{{ session.users.length }} attendees</span>
+            <span class="ml-2">{{ session.users.length }} attendees</span>
           </div>
           <div fxLayoutAlign="start center">
             <mat-icon>
               calendar_month
             </mat-icon>
-            <span class="ml1">{{ session.date | date: 'longDate'}}</span>
+            <span class="ml-2">{{ session.date | date: 'longDate'}}</span>
           </div>
         </div>
         <div class="description">

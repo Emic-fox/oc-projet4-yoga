@@ -1,14 +1,14 @@
-<div class="list">
+<div class="m-5">
   <mat-card>
     <mat-card-header fxLayout="row" fxLayoutAlign="space-between center">
-      <mat-card-title class="m0">Rentals available</mat-card-title>
+      <mat-card-title class="m-0">Rentals available</mat-card-title>
       @if (user!.admin) {
         <app-icon-button icon="add" label="Create" routerLink="create" />
       }
     </mat-card-header>
-    <div class="items mt2" fxLayout="row wrap" fxLayout.lt-md="column">
+    <div class="mt-4 gap-8" fxLayout="row wrap" fxLayout.lt-md="column">
       @for (session of (sessions$ | async); track session.id) {
-        <mat-card class="item" fxFlex>
+        <mat-card class="min-w-[250px]" fxFlex>
           <mat-card-header>
             <mat-card-title>{{ session.name }}</mat-card-title>
             <mat-card-subtitle>

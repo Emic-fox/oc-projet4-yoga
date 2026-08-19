@@ -12,8 +12,7 @@ import { IconButtonComponent } from "../../../../shared/components/icon-button/i
 @Component({
   selector: 'app-list',
   imports: [AsyncPipe, DatePipe, MaterialModule, SessionImageComponent, IconButtonComponent],
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  templateUrl: './list.component.html'
 })
 export class ListComponent {
   private sessionApiService = inject(SessionApiService);

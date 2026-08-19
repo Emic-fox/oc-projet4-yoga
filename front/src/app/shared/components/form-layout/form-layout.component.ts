@@ -4,8 +4,7 @@ import { MaterialModule } from '../../material.module';
 @Component({
   selector: 'app-form-layout',
   imports: [MaterialModule],
-  templateUrl: './form-layout.component.html',
-  styleUrls: ['./form-layout.component.scss']
+  templateUrl: './form-layout.component.html'
 })
 export class FormLayoutComponent {
   @Input() maxWidth: string | null = null;

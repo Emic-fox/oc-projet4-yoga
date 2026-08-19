@@ -1,14 +1,14 @@
-<div class="app">
+<div>
   <mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center">
     <span>Yoga app</span>
-    <div>
+    <div class="space-x-2.5">
       @if ($isLogged() | async) {
-        <span routerLink="sessions" class="link">Sessions</span>
-        <span routerLink="me" class="link">Account</span>
-        <button type="button" (click)="logout()" class="link">Logout</button>
+        <app-nav-link link="sessions">Sessions</app-nav-link>
+        <app-nav-link link="me">Account</app-nav-link>
+        <app-nav-link (linkClick)="logout()">Logout</app-nav-link>
       } @else {
-        <a routerLink="/login" routerLinkActive="active" class="link">Login</a>
-        <a routerLink="/register" routerLinkActive="active" class="link">Register</a>
+        <app-nav-link link="/login">Login</app-nav-link>
+        <app-nav-link link="/register">Register</app-nav-link>
       }
     </div>
   </mat-toolbar>

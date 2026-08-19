@@ -5,12 +5,12 @@ import { AuthService } from './core/services/auth.service';
 import { SessionService } from './core/services/session.service';
 import {MaterialModule} from "./shared/material.module";
 import { AsyncPipe } from '@angular/common';
+import { NavLinkComponent } from './shared/components/nav-link/nav-link.component';
 
 @Component({
   selector: 'app-root',
-  imports: [AsyncPipe, MaterialModule, RouterOutlet, RouterModule],
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  imports: [AsyncPipe, MaterialModule, RouterOutlet, RouterModule, NavLinkComponent],
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
   private authService = inject(AuthService);

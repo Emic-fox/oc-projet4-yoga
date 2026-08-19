@@ -4,7 +4,6 @@ import { MaterialModule } from '../../material.module';
 @Component({
   selector: 'app-session-image',
   imports: [MaterialModule],
-  templateUrl: './session-image.component.html',
-  styleUrls: ['./session-image.component.scss']
+  templateUrl: './session-image.component.html'
 })
 export class SessionImageComponent { }
