@@ -1,6 +1,6 @@
 <div class="flex flex-row justify-start items-center">
-  <button mat-icon-button [routerLink]="backRouterLink" (click)="onClick()">
+  <button data-testid="back-button" mat-icon-button [routerLink]="backRouterLink" (click)="onClick()">
     <mat-icon>arrow_back</mat-icon>
   </button>
-  <h1 class="m-0!">{{ title }}</h1>
+  <h1 data-testid="page-title" class="m-0!">{{ title }}</h1>
 </div>

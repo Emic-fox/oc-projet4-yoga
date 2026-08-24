@@ -1,8 +1,8 @@
 <div class="my-4 flex flex-row justify-between items-center">
   @if (createdAt) {
-    <div><i>Create at: </i>{{ createdAt | date: 'longDate' }}</div>
+    <div data-testid="created-at"><i>Create at: </i>{{ createdAt | date: 'longDate' }}</div>
   }
   @if (updatedAt) {
-    <div><i>Last update: </i>{{ updatedAt | date: 'longDate' }}</div>
+    <div data-testid="updated-at"><i>Last update: </i>{{ updatedAt | date: 'longDate' }}</div>
   }
 </div>
