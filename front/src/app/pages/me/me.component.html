@@ -6,14 +6,14 @@
     <mat-card-content>
       @if (user$ | async; as user) {
         <div class="flex flex-col justify-start items-center">
-          <p>Name: {{ user.firstName }} {{ user.lastName | uppercase }}</p>
-          <p>Email: {{ user.email }}</p>
+          <p data-testid="user-name">Name: {{ user.firstName }} {{ user.lastName | uppercase }}</p>
+          <p data-testid="user-email">Email: {{ user.email }}</p>
           @if (user.admin) {
-            <p class="my-4">You are admin</p>
+            <p data-testid="admin-message" class="my-4">You are admin</p>
           } @else {
             <div class="my-4 flex flex-col justify-center items-center">
               <p>Delete my account:</p>
-              <app-icon-button icon="delete" label="Delete" color="warn" (buttonClick)="delete()" />
+              <app-icon-button data-testid="delete-account-button" icon="delete" label="Delete" color="warn" (buttonClick)="delete()" />
             </div>
           }
           <app-record-dates [createdAt]="user.createdAt" [updatedAt]="user.updatedAt" />

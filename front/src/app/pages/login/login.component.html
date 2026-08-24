@@ -1,19 +1,19 @@
 <app-form-layout maxWidth="600px" title="Login">
     <form [formGroup]="form" (ngSubmit)="submit()" class="flex flex-col">
         <mat-form-field class="flex-1">
-            <input matInput placeholder="Email" formControlName="email">
+            <input data-testid="email-input" matInput placeholder="Email" formControlName="email">
         </mat-form-field>
         <mat-form-field class="flex-1">
-            <input matInput [type]="hide ? 'password' : 'text'" placeholder="Password"
+            <input data-testid="password-input" matInput [type]="hide ? 'password' : 'text'" placeholder="Password"
                 formControlName="password">
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                [attr.aria-pressed]="hide">
+            <button data-testid="toggle-password-visibility-button" mat-icon-button type="button" matSuffix
+                (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
         </mat-form-field>
-        <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Submit</button>
+        <button data-testid="submit-button" mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Submit</button>
         @if (onError) {
-            <p class="text-red-500">An error occurred</p>
+            <p data-testid="login-error-message" class="text-red-500">An error occurred</p>
         }
     </form>
 </app-form-layout>

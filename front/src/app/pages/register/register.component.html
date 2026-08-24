@@ -1,20 +1,20 @@
 <app-form-layout maxWidth="600px" title="Register">
     <form [formGroup]="form" (ngSubmit)="submit()" class="flex flex-col">
         <mat-form-field class="flex-1">
-            <input matInput placeholder="First name" formControlName="firstName">
+            <input data-testid="first-name-input" matInput placeholder="First name" formControlName="firstName">
         </mat-form-field>
         <mat-form-field class="flex-1">
-            <input matInput placeholder="Last name" formControlName="lastName">
+            <input data-testid="last-name-input" matInput placeholder="Last name" formControlName="lastName">
         </mat-form-field>
         <mat-form-field class="flex-1">
-            <input matInput placeholder="Email" formControlName="email">
+            <input data-testid="email-input" matInput placeholder="Email" formControlName="email">
         </mat-form-field>
         <mat-form-field class="flex-1">
-            <input matInput placeholder="Password" formControlName="password">
+            <input data-testid="password-input" matInput placeholder="Password" formControlName="password">
         </mat-form-field>
-        <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Submit</button>
+        <button data-testid="submit-button" mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Submit</button>
         @if (onError) {
-            <p class="text-red-500">An error occurred</p>
+            <p data-testid="register-error-message" class="text-red-500">An error occurred</p>
         }
     </form>
 </app-form-layout>
