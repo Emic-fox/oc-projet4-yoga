@@ -6,13 +6,13 @@
           <app-page-title [title]="session.name | titlecase" />
           <div>
             @if (isAdmin) {
-              <app-icon-button icon="delete" label="Delete" color="warn" (buttonClick)="delete()" />
+              <app-icon-button data-testid="delete-session-button" icon="delete" label="Delete" color="warn" (buttonClick)="delete()" />
             } @else {
               <div>
                 @if (isParticipate) {
-                  <app-icon-button icon="person_remove" label="Do not participate" color="warn" (buttonClick)="unParticipate()" />
+                  <app-icon-button data-testid="unparticipate-button" icon="person_remove" label="Do not participate" color="warn" (buttonClick)="unParticipate()" />
                 } @else {
-                  <app-icon-button icon="person_add" label="Participate" (buttonClick)="participate()" />
+                  <app-icon-button data-testid="participate-button" icon="person_add" label="Participate" (buttonClick)="participate()" />
                 }
               </div>
             }
@@ -26,7 +26,7 @@
             <mat-icon>
               people
             </mat-icon>
-            <span class="ml-2">{{ teacher.firstName }} {{ teacher.lastName | uppercase }}</span>
+            <span data-testid="teacher-name" class="ml-2">{{ teacher.firstName }} {{ teacher.lastName | uppercase }}</span>
           </div>
         </mat-card-subtitle>
       }
@@ -41,7 +41,7 @@
             <mat-icon>
               group
             </mat-icon>
-            <span class="ml-2">{{ session.users.length }} attendees</span>
+            <span data-testid="attendees-count" class="ml-2">{{ session.users.length }} attendees</span>
           </div>
           <div class="flex justify-start items-center">
             <mat-icon>
@@ -50,7 +50,7 @@
             <span class="ml-2">{{ session.date | date: 'longDate'}}</span>
           </div>
         </div>
-        <div class="description">
+        <div class="description" data-testid="session-description">
           <p>Description:</p>
           {{ session.description }}
           <br>

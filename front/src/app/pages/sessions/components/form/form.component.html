@@ -5,15 +5,15 @@
     <form class="mt-4 flex flex-col" [formGroup]="sessionForm" (ngSubmit)="submit()">
       <mat-form-field appearance="outline" class="flex-1">
         <mat-label>Name</mat-label>
-        <input matInput formControlName="name">
+        <input data-testid="name-input" matInput formControlName="name">
       </mat-form-field>
       <mat-form-field appearance="outline" class="flex-1">
         <mat-label>Date</mat-label>
-        <input matInput type="date" formControlName="date">
+        <input data-testid="date-input" matInput type="date" formControlName="date">
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Teacher</mat-label>
-        <mat-select ngDefaultControl formControlName="teacher_id">
+        <mat-select data-testid="teacher-select" ngDefaultControl formControlName="teacher_id">
           @for (teacher of (teachers$ | async); track teacher.id) {
             <mat-option [value]="teacher.id">
               {{teacher.firstName}} {{teacher.lastName}}
@@ -23,10 +23,10 @@
       </mat-form-field>
       <mat-form-field appearance="outline" class="flex-1">
         <mat-label>Description</mat-label>
-        <textarea matInput rows="8" formControlName="description"></textarea>
+        <textarea data-testid="description-textarea" matInput rows="8" formControlName="description"></textarea>
       </mat-form-field>
       <div class="flex flex-row justify-center items-center">
-        <button mat-raised-button color="primary" type="submit" [disabled]="sessionForm.invalid">
+        <button data-testid="submit-button" mat-raised-button color="primary" type="submit" [disabled]="sessionForm.invalid">
           Save
         </button>
       </div>

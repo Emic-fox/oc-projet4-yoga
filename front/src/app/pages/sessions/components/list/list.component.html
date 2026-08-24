@@ -3,14 +3,14 @@
     <mat-card-header class="flex flex-row justify-between items-center">
       <mat-card-title class="m-0">Sessions available</mat-card-title>
       @if (user!.admin) {
-        <app-icon-button icon="add" label="Create" routerLink="create" />
+        <app-icon-button data-testid="create-session-button" icon="add" label="Create" routerLink="create" />
       }
     </mat-card-header>
     <div class="mt-4 gap-8 flex flex-col md:flex-row md:flex-wrap">
       @for (session of (sessions$ | async); track session.id) {
-        <mat-card class="min-w-[250px] flex-1">
+        <mat-card data-testid="session-card" class="min-w-[250px] flex-1">
           <mat-card-header>
-            <mat-card-title>{{ session.name }}</mat-card-title>
+            <mat-card-title data-testid="session-name">{{ session.name }}</mat-card-title>
             <mat-card-subtitle>
               Session on {{ session.date | date: 'longDate'}}
             </mat-card-subtitle>
@@ -19,14 +19,14 @@
             <app-session-image />
           </div>
           <mat-card-content>
-            <p>
+            <p data-testid="session-description">
               {{ session.description }}
             </p>
           </mat-card-content>
           <mat-card-actions class="gap-1">
-            <app-icon-button icon="search" label="Detail" [routerLink]="['detail', session.id]" />
+            <app-icon-button data-testid="detail-session-button" icon="search" label="Detail" [routerLink]="['detail', session.id]" />
             @if (user!.admin) {
-              <app-icon-button icon="edit" label="Edit" [routerLink]="['update', session.id]" />
+              <app-icon-button data-testid="edit-session-button" icon="edit" label="Edit" [routerLink]="['update', session.id]" />
             }
           </mat-card-actions>
         </mat-card>
