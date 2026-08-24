@@ -1,0 +1,13 @@
+<mat-toolbar color="primary" class="flex flex-row justify-between items-center">
+  <span data-testid="app-title">Yoga app</span>
+  <div class="space-x-2.5">
+    @if (isLogged$ | async) {
+      <app-nav-link data-testid="sessions-link" link="sessions">Sessions</app-nav-link>
+      <app-nav-link data-testid="account-link" link="me">Account</app-nav-link>
+      <app-nav-link data-testid="logout-link" (linkClick)="logout()">Logout</app-nav-link>
+    } @else {
+      <app-nav-link data-testid="login-link" link="/login">Login</app-nav-link>
+      <app-nav-link data-testid="register-link" link="/register">Register</app-nav-link>
+    }
+  </div>
+</mat-toolbar>
