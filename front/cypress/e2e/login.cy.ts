@@ -17,11 +17,13 @@ describe('Login spec', () => {
         method: 'GET',
         url: '/api/session',
       },
-      []).as('session')
+      []
+    ).as('session')
 
-    cy.get('input[formControlName=email]').type("yoga@studio.com")
-    cy.get('input[formControlName=password]').type(`${"test!1234"}{enter}{enter}`)
+    cy.getByTestid('email-input').type("yoga@studio.com")
+    cy.getByTestid('password-input').type(`${"test!1234"}{enter}{enter}`)
 
+    cy.wait('@session')
     cy.url().should('include', '/sessions')
   })
 });

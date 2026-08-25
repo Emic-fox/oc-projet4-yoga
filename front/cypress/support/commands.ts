@@ -3,15 +3,19 @@
 // with Intellisense and code completion in your
 // IDE or Text Editor.
 // ***********************************************
-// declare namespace Cypress {
-//   interface Chainable<Subject = any> {
-//     customCommand(param: any): typeof customCommand;
-//   }
-// }
-//
-// function customCommand(param: any): void {
-//   console.warn(param);
-// }
+// eslint-disable-next-line @typescript-eslint/no-namespace
+declare namespace Cypress {
+  interface Chainable {
+    getByTestid(selector: string): Chainable<JQuery<HTMLElement>>;
+  }
+}
+
+function getByTestid(selector: string) {
+  return cy.get(`[data-testid="${selector}"]`);
+}
+
+Cypress.Commands.add("getByTestid", getByTestid);
+
 //
 // NOTE: You can use it like so:
 // Cypress.Commands.add('customCommand', customCommand);
