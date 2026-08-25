@@ -49,16 +49,28 @@ describe('Register spec', () => {
       cy.getByTestid('password-input').type('test!1234')
     }
 
+    const assertFormCannotBeSubmitted = () => {
+      cy.getByTestid('submit-button').should('be.disabled')
+      cy.getByTestid('first-name-input').type('{enter}')
+      cy.get('@registerAttempt.all').should('have.length', 0)
+    }
+
+    it('Form can be submitted when all fields are valid', () => {
+      fillValidForm()
+
+      cy.getByTestid('submit-button').should('be.enabled')
+      cy.getByTestid('first-name-input').should('have.class', 'ng-valid')
+      cy.getByTestid('last-name-input').should('have.class', 'ng-valid')
+      cy.getByTestid('email-input').should('have.class', 'ng-valid')
+      cy.getByTestid('password-input').should('have.class', 'ng-valid')
+    })
+
     describe('First name', () => {
       it("Form can't be submitted when first name is missing", () => {
         fillValidForm();
         cy.getByTestid('first-name-input').clear()
   
-        cy.getByTestid('submit-button').should('be.disabled')
-  
-        cy.getByTestid('password-input').type('{enter}')
-  
-        cy.get('@registerAttempt.all').should('have.length', 0)
+        assertFormCannotBeSubmitted()
         cy.getByTestid('first-name-input').should('have.class', 'ng-invalid')
       })
   
@@ -66,11 +78,7 @@ describe('Register spec', () => {
         fillValidForm()
         cy.getByTestid('first-name-input').clear().type('ab')
   
-        cy.getByTestid('submit-button').should('be.disabled')
-  
-        cy.getByTestid('password-input').type('{enter}')
-  
-        cy.get('@registerAttempt.all').should('have.length', 0)
+        assertFormCannotBeSubmitted()
         cy.getByTestid('first-name-input').should('have.class', 'ng-invalid')
       })
   
@@ -78,11 +86,7 @@ describe('Register spec', () => {
         fillValidForm()
         cy.getByTestid('first-name-input').clear().type('a'.repeat(21))
   
-        cy.getByTestid('submit-button').should('be.disabled')
-  
-        cy.getByTestid('password-input').type('{enter}')
-  
-        cy.get('@registerAttempt.all').should('have.length', 0)
+        assertFormCannotBeSubmitted()
         cy.getByTestid('first-name-input').should('have.class', 'ng-invalid')
       })
     })
@@ -92,11 +96,7 @@ describe('Register spec', () => {
         fillValidForm()
         cy.getByTestid('last-name-input').clear()
   
-        cy.getByTestid('submit-button').should('be.disabled')
-  
-        cy.getByTestid('password-input').type('{enter}')
-  
-        cy.get('@registerAttempt.all').should('have.length', 0)
+        assertFormCannotBeSubmitted()
         cy.getByTestid('last-name-input').should('have.class', 'ng-invalid')
       })
   
@@ -104,11 +104,7 @@ describe('Register spec', () => {
         fillValidForm()
         cy.getByTestid('last-name-input').clear().type('ab')
   
-        cy.getByTestid('submit-button').should('be.disabled')
-  
-        cy.getByTestid('password-input').type('{enter}')
-  
-        cy.get('@registerAttempt.all').should('have.length', 0)
+        assertFormCannotBeSubmitted()
         cy.getByTestid('last-name-input').should('have.class', 'ng-invalid')
       })
   
@@ -116,11 +112,7 @@ describe('Register spec', () => {
         fillValidForm()
         cy.getByTestid('last-name-input').clear().type('a'.repeat(21))
   
-        cy.getByTestid('submit-button').should('be.disabled')
-  
-        cy.getByTestid('password-input').type('{enter}')
-  
-        cy.get('@registerAttempt.all').should('have.length', 0)
+        assertFormCannotBeSubmitted()
         cy.getByTestid('last-name-input').should('have.class', 'ng-invalid')
       })
     })
@@ -130,11 +122,7 @@ describe('Register spec', () => {
         fillValidForm()
         cy.getByTestid('email-input').clear()
   
-        cy.getByTestid('submit-button').should('be.disabled')
-  
-        cy.getByTestid('password-input').type('{enter}')
-  
-        cy.get('@registerAttempt.all').should('have.length', 0)
+        assertFormCannotBeSubmitted()
         cy.getByTestid('email-input').should('have.class', 'ng-invalid')
       })
   
@@ -142,11 +130,7 @@ describe('Register spec', () => {
         fillValidForm()
         cy.getByTestid('email-input').clear().type('not-an-email')
   
-        cy.getByTestid('submit-button').should('be.disabled')
-  
-        cy.getByTestid('password-input').type('{enter}')
-  
-        cy.get('@registerAttempt.all').should('have.length', 0)
+        assertFormCannotBeSubmitted()
         cy.getByTestid('email-input').should('have.class', 'ng-invalid')
       })
     })
@@ -155,12 +139,8 @@ describe('Register spec', () => {
       it("Form can't be submitted when password is missing", () => {
         fillValidForm()
         cy.getByTestid('password-input').clear()
-  
-        cy.getByTestid('submit-button').should('be.disabled')
-  
-        cy.getByTestid('email-input').type('{enter}')
-  
-        cy.get('@registerAttempt.all').should('have.length', 0)
+
+        assertFormCannotBeSubmitted()
         cy.getByTestid('password-input').should('have.class', 'ng-invalid')
       })
   
@@ -168,11 +148,7 @@ describe('Register spec', () => {
         fillValidForm()
         cy.getByTestid('password-input').clear().type('ab')
   
-        cy.getByTestid('submit-button').should('be.disabled')
-  
-        cy.getByTestid('password-input').type('{enter}')
-  
-        cy.get('@registerAttempt.all').should('have.length', 0)
+        assertFormCannotBeSubmitted()
         cy.getByTestid('password-input').should('have.class', 'ng-invalid')
       })
   
@@ -180,19 +156,9 @@ describe('Register spec', () => {
         fillValidForm()
         cy.getByTestid('password-input').clear().type('a'.repeat(41))
   
-        cy.getByTestid('submit-button').should('be.disabled')
-  
-        cy.getByTestid('password-input').type('{enter}')
-  
-        cy.get('@registerAttempt.all').should('have.length', 0)
+        assertFormCannotBeSubmitted()
         cy.getByTestid('password-input').should('have.class', 'ng-invalid')
       })
-    })
-
-    it('Form can be submitted when all fields are valid', () => {
-      fillValidForm()
-
-      cy.getByTestid('submit-button').should('be.enabled')
     })
   })
 });

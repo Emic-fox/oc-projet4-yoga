@@ -87,7 +87,7 @@ export class FormComponent implements OnInit {
       ],
       teacher_id: [
         session ? session.teacher_id : 0,
-        [Validators.required]
+        [Validators.required, Validators.min(1)]
       ],
       description: [
         session ? session.description : '',

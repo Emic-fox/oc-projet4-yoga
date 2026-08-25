@@ -51,14 +51,25 @@ describe('Login spec', () => {
       cy.intercept('POST', '/api/auth/login').as('loginAttempt')
     })
 
+    const assertFormCannotBeSubmitted = () => {
+      cy.getByTestid('submit-button').should('be.disabled')
+      cy.getByTestid('email-input').type('{enter}')
+      cy.get('@loginAttempt.all').should('have.length', 0)
+    }
+
+    it('Form can be submitted when all fields are valid', () => {
+      cy.getByTestid('email-input').type("yoga@studio.com")
+      cy.getByTestid('password-input').type(`${"test!1234"}`)
+
+      cy.getByTestid('submit-button').should('be.enabled')
+      cy.getByTestid('email-input').should('have.class', 'ng-valid')
+      cy.getByTestid('password-input').should('have.class', 'ng-valid')
+    })
+
     it("Form can't be submitted when email is missing", () => {
       cy.getByTestid('password-input').type('test!1234')
 
-      cy.getByTestid('submit-button').should('be.disabled')
-
-      cy.getByTestid('password-input').type('{enter}')
-
-      cy.get('@loginAttempt.all').should('have.length', 0)
+      assertFormCannotBeSubmitted()
       cy.getByTestid('email-input').should('have.class', 'ng-invalid')
       cy.getByTestid('password-input').should('have.class', 'ng-valid')
     })
@@ -66,11 +77,7 @@ describe('Login spec', () => {
     it("Form can't be submitted when password is missing", () => {
       cy.getByTestid('email-input').type('yoga@studio.com')
 
-      cy.getByTestid('submit-button').should('be.disabled')
-
-      cy.getByTestid('email-input').type('{enter}')
-
-      cy.get('@loginAttempt.all').should('have.length', 0)
+      assertFormCannotBeSubmitted()
       cy.getByTestid('password-input').should('have.class', 'ng-invalid')
       cy.getByTestid('email-input').should('have.class', 'ng-valid')
     })
@@ -79,11 +86,7 @@ describe('Login spec', () => {
       cy.getByTestid('email-input').type('not-an-email')
       cy.getByTestid('password-input').type('test!1234')
 
-      cy.getByTestid('submit-button').should('be.disabled')
-
-      cy.getByTestid('password-input').type('{enter}')
-
-      cy.get('@loginAttempt.all').should('have.length', 0)
+      assertFormCannotBeSubmitted()
       cy.getByTestid('email-input').should('have.class', 'ng-invalid')
       cy.getByTestid('password-input').should('have.class', 'ng-valid')
     })
