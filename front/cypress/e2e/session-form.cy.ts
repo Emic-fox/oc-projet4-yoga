@@ -29,17 +29,30 @@ describe('Session form spec', () => {
     cy.getByTestid('description-textarea').type('A great yoga session')
   }
 
-  // Connexion en tant qu'admin avant chaque test
-  beforeEach(() => {
-    cy.intercept('POST', '/api/auth/login', { body: admin })
+  const login = () => {
+    cy.session('admin', () => {
+      cy.intercept('POST', '/api/auth/login', { body: admin })
+      cy.intercept('GET', '/api/session', [existingSession]).as('sessions')
+
+      cy.visit('/login')
+      cy.getByTestid('email-input').type('yoga@studio.com')
+      cy.getByTestid('password-input').type('test!1234{enter}')
+
+      cy.wait('@sessions')
+    })
+  }
+
+  const goToSessionList = () => {
+    login()
+
     cy.intercept('GET', '/api/teacher', teachers).as('teachers')
     cy.intercept('GET', '/api/session', [existingSession]).as('sessions')
-
-    cy.visit('/login')
-    cy.getByTestid('email-input').type('yoga@studio.com')
-    cy.getByTestid('password-input').type('test!1234{enter}')
-
+    cy.visit('/sessions')
     cy.wait('@sessions')
+  }
+
+  beforeEach(() => {
+    goToSessionList()
   })
 
   describe('Create session', () => {

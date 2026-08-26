@@ -34,13 +34,23 @@ describe('Session list spec', () => {
     },
   ]
 
-  const login = (account: typeof admin | typeof user, overridesessions: typeof sessions = sessions) => {
-    cy.intercept('POST', '/api/auth/login', { body: account })
+  const login = (account: typeof admin | typeof user) => {
+    cy.session(account.username, () => {
+      cy.intercept('POST', '/api/auth/login', { body: account })
+      cy.intercept('GET', '/api/session', []).as('sessions')
+
+      cy.visit('/login')
+      cy.getByTestid('email-input').type('yoga@studio.com')
+      cy.getByTestid('password-input').type('test!1234{enter}')
+
+      cy.wait('@sessions')
+    })
+  }
+
+  const visitSessions = (overridesessions: typeof sessions = sessions) => {
     cy.intercept('GET', '/api/session', overridesessions).as('sessions')
 
-    cy.visit('/login')
-    cy.getByTestid('email-input').type('yoga@studio.com')
-    cy.getByTestid('password-input').type('test!1234{enter}')
+    cy.visit('/sessions')
 
     cy.wait('@sessions')
   }
@@ -59,6 +69,7 @@ describe('Session list spec', () => {
 
   it('Displays every session with its name, date and description', () => {
     login(user)
+    visitSessions()
 
     cy.getByTestid('session-card').should('have.length', sessions.length)
 
@@ -76,7 +87,8 @@ describe('Session list spec', () => {
   })
 
   it('Displays an empty list when there are no sessions', () => {
-    login(user, [])
+    login(user)
+    visitSessions([])
 
     cy.getByTestid('session-card').should('have.length', 0)
   })
@@ -84,6 +96,7 @@ describe('Session list spec', () => {
   describe('As an admin', () => {
     beforeEach(() => {
       login(admin)
+      visitSessions()
     })
 
     it('Displays the create button and an detail/edit buttons on each session', () => {
@@ -125,6 +138,7 @@ describe('Session list spec', () => {
   describe('As a non-admin user', () => {
     beforeEach(() => {
       login(user)
+      visitSessions()
     })
 
     it('Does not display the create button nor the edit buttons', () => {

@@ -34,14 +34,16 @@ describe('Session detail spec', () => {
   })
 
   const login = (account: typeof admin | typeof user) => {
-    cy.intercept('POST', '/api/auth/login', { body: account })
-    cy.intercept('GET', '/api/session', []).as('sessions')
+    cy.session(account.username, () => {
+      cy.intercept('POST', '/api/auth/login', { body: account })
+      cy.intercept('GET', '/api/session', []).as('sessions')
 
-    cy.visit('/login')
-    cy.getByTestid('email-input').type('yoga@studio.com')
-    cy.getByTestid('password-input').type('test!1234{enter}')
+      cy.visit('/login')
+      cy.getByTestid('email-input').type('yoga@studio.com')
+      cy.getByTestid('password-input').type('test!1234{enter}')
 
-    cy.wait('@sessions')
+      cy.wait('@sessions')
+    })
   }
 
   const visitDetail = (session: ReturnType<typeof buildSession>) => {
