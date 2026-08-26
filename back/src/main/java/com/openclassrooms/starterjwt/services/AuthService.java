@@ -39,11 +39,11 @@ public class AuthService {
         String jwt = this.jwtUtils.generateJwtToken(authentication);
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 
-        boolean isAdmin = this.userRepository.findByEmail(userDetails.getUsername())
-                .map(User::isAdmin)
-                .orElse(false);
+        User user = this.userRepository.findByEmail(userDetails.getUsername())
+                .orElseThrow(() -> new IllegalStateException(
+                        "Authenticated user not found in database: " + userDetails.getUsername()));
 
-        return new LoginResult(jwt, userDetails, isAdmin);
+        return new LoginResult(jwt, userDetails, user.isAdmin());
     }
 
     public void register(SignupRequest signUpRequest) {
