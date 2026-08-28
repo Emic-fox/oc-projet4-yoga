@@ -6,8 +6,11 @@ Application front-end de l'app "Yoga" (P5 - Full Stack Testing), générée avec
 
 - [Architecture du projet](#architecture-du-projet)
 - [Librairies principales](#librairies-principales)
-- [Démarrage](#démarrage)
+- [Pré-requis](#pré-requis)
+- [Installation](#installation)
+- [Utilisation](#utilisation)
 - [Tests](#tests)
+- [Rapports de couverture](#rapports-de-couverture)
 
 ## Architecture du projet
 
@@ -70,50 +73,117 @@ Points clés :
 | `nyc` | ^17.1.0 | Rapports de couverture (E2E) |
 | `tailwindcss` (+ `postcss`, `autoprefixer`) | ^3.4.19 | Framework CSS utilitaire |
 
-## Démarrage
+## Pré-requis
 
-Cloner le dépôt :
+- **Node.js** 20+ et **npm** 9+
+- Le **back-end** doit tourner sur `http://localhost:8080` pour que l'application soit
+  fonctionnelle (authentification, sessions...). Voir `back/README.md` pour le démarrer
+  (`mvn spring-boot:run`, avec Docker pour la base MySQL).
 
-> git clone https://github.com/OpenClassrooms-Student-Center/P5-Full-Stack-testing
+## Installation
 
-Se placer dans le dossier du front :
+Cloner le dépôt
 
-> cd front
+Se placer dans le dossier du front et installer les dépendances :
 
-Installer les dépendances :
+```bash
+cd front
+npm install
+```
 
-> npm install
+## Utilisation
 
-Lancer le front-end :
+Lancer le serveur de développement :
 
-> npm run start
+```bash
+npm run start
+```
+
+L'application est disponible sur `http://localhost:4200`. Les appels `/api/**` sont
+automatiquement redirigés vers le back-end `http://localhost:8080` via `proxy.conf.json`.
+
+Compte administrateur créé par défaut (seed du back-end) :
+
+- login : `yoga@studio.com`
+- password : `test!1234`
+
+Il est également possible de créer un compte utilisateur classique via la page **Register**.
+
+Build de production :
+
+```bash
+npm run build
+```
+
+Lint :
+
+```bash
+npm run lint
+```
 
 ## Tests
 
-### Tests unitaires
+### Tests unitaires (Jest)
 
 Lancer les tests :
 
-> npm run test
+```bash
+npm run test
+```
 
 Relancer automatiquement à chaque changement :
 
-> npm run test:watch
+```bash
+npm run test:watch
+```
 
-### Tests end-to-end (E2E)
+### Tests end-to-end (Cypress)
 
-Lancer les tests E2E :
+Mode interactif (ouvre l'interface Cypress) :
 
-> npm run e2e
+```bash
+npm run cypress:open
+```
 
-Générer le rapport de couverture (à lancer après les tests E2E) :
+Mode headless (exécution complète en ligne de commande, avec instrumentation de la
+couverture) :
 
-> npm run e2e:coverage
+```bash
+npm run e2e
+```
 
-Le rapport est disponible ici :
+## Rapports de couverture
 
-> front/coverage/lcov-report/index.html
+### Couverture des tests unitaires (Jest)
 
-### Lint
+```bash
+npm run test -- --coverage
+```
 
-> npm run lint
+Le rapport HTML est généré dans :
+
+```
+front/coverage/jest/lcov-report/index.html
+```
+
+Le seuil de couverture est fixé à **80 % de statements** (`coverageThreshold` dans `jest.config.js`).
+
+### Couverture des tests E2E (Cypress + nyc/Istanbul)
+
+1. Exécuter d'abord les tests E2E qui produisent les données de couverture :
+
+   ```bash
+   npm run e2e
+   ```
+
+2. Générer le rapport à partir de ces données :
+
+   ```bash
+   npm run e2e:coverage
+   ```
+
+Le rapport HTML est disponible ici :
+
+```
+front/coverage/lcov-report/index.html
+```
